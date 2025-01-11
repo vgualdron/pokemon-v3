@@ -8,15 +8,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: envConfig, // Configuración accesible desde el cliente
   },
-
   // Directorio de generación estática
   generate: {
     dir: 'docs',
   },
-
   // Desactivar el renderizado del lado del servidor
   ssr: false,
-
   // Configuración del encabezado global
   app: {
     head: {
@@ -38,42 +35,36 @@ export default defineNuxtConfig({
       ],
     },
   },
-
   // Archivos CSS globales
   css: [
     'bootstrap/dist/css/bootstrap.css', // Estilos de Bootstrap
-    'bootstrap-icons/font/bootstrap-icons.css', // Íconos de Bootstrap (si los usas)
+    'bootstrap-vue-next/dist/bootstrap-vue-next.css',
+    'bootstrap-icons/font/bootstrap-icons.css', // Íconos de Bootstrap
     '~/assets/css/styles.css',
   ],
-
-  // Importación automática de componentes
   components: true,
-
-  // Módulos de desarrollo y construcción
   modules: [
-    // PWA
+    '@pinia/nuxt',
     '@vite-pwa/nuxt',
   ],
-
-  // Configuración del módulo Axios
+  plugins: ['~/plugins/bootstrap-vue.js'],
+  build: {
+    transpile: ['bootstrap-vue-next'],
+  },
   axios: {},
-
-  // Configuración de PWA
   pwa: {
     manifest: {
       lang: 'en',
     },
   },
-
-  // Configuración de compilación
   vite: {
-    // Aquí puedes agregar configuraciones adicionales específicas para Vite
+    // configuraciones adicionales específicas para Vite
   },
-
-  // Configuración del router
   router: {
     options: {
       base: envConfig.appBaseDir || '/',
     },
   },
+
+  compatibilityDate: '2025-01-10',
 });

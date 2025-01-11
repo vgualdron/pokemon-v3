@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
-import ImageWelcome from '@/components/ImageWelcome.vue'
+import Welcome from '~/components/main/Welcome.vue'
 
-describe('ImageWelcome', () => {
+describe('Welcome', () => {
   test('is a Vue instance', () => {
     const wrapper = mount(ImageWelcome)
     expect(wrapper.vm).toBeTruthy()

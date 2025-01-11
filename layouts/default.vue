@@ -1,14 +1,14 @@
 <template>
   <div>
-    <Nuxt />
+    <NuxtPage />
     <Loader />
   </div>
 </template>
 <script>
-import Loader from '../components/Loader';
+import Loader from '../components/common/Loader';
 export default {
   components: {
-    Loader
+    Loader,
   }
 };
 </script>

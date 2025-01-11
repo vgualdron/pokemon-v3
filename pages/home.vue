@@ -1,99 +1,87 @@
 <template>
-  <div>
+  <div class="home">
     <div class="container">
       <InputSearch />
-    </div>
-    <div v-if="items && items.length > 0" class="container">
-      <ListItems :items="items"/>
-      <div v-if="pokemons.next && showFavorites === false" class="see-more">
-        <SeeMore />
+      <div v-if="items.length > 0" class="list-items">
+        <Item
+          v-for="(item, index) in items"
+          :key="`${index.toString()}-${item.name}`"
+          :item="item" />
       </div>
+      <NotFoundItems v-else />
     </div>
-    <div v-else class="container">
-      <NotFoundItems />
-    </div>
-    <div>
-      <NavbarFixedBottom :disabledFavorites="disabledFavorites"/>
-    </div>
-    <div>
-      <ModalDetailPokemon />
-    </div>
+    <NavbarFixedBottom :disabledFavorites="disabledFavorites"/>
+    <ModalDetailPokemon />
   </div>
 </template>
-<script>
-import { mapState, mapActions } from 'vuex';
-import InputSearch from '../components/InputSearch';
-import ListItems from '../components/ListItems';
-import NotFoundItems from '../components/NotFoundItems';
-import NavbarFixedBottom from '../components/NavbarFixedBottom';
-import SeeMore from '../components/SeeMore';
-import ModalDetailPokemon from '../components/ModalDetailPokemon';
-export default {
-  name: 'Home',
-  components: {
-    InputSearch,
-    ListItems,
-    NotFoundItems,
-    NavbarFixedBottom,
-    SeeMore,
-    ModalDetailPokemon
-  },
-  watch: {
-    disabledFavorites (newValue) {
-      if (newValue) {
-        this.setShowFavorites(false);
+
+<script setup>
+  import { ref, computed, onMounted, watch } from 'vue';
+  import { usePokemonStore } from '../stores/pokemon';
+  import { useCommonStore } from '../stores/common';
+  import InputSearch from '../components/home/InputSearch';
+  import Item from '../components/home/Item';
+  import NotFoundItems from '../components/home/NotFoundItems';
+  import NavbarFixedBottom from '../components/home/NavbarFixedBottom';
+  import ModalDetailPokemon from '../components/home/ModalDetailPokemon';
+
+  const pokemonStore = usePokemonStore();
+  const commonStore = useCommonStore();
+
+  const showFavorites = computed(() => pokemonStore.showFavorites);
+  const search = computed(() => pokemonStore.search);
+  const pokemons = computed(() => pokemonStore.pokemons);
+  const disabledFavorites = computed(() => {
+    const favoritePokemons = pokemons.value?.results?.filter(item => item.favorite);
+    return favoritePokemons?.length <= 0;
+  })
+
+  const items = computed(() => {
+    const results = pokemons.value?.results || [];
+    let filteredItems = showFavorites.value
+      ? results.filter(item => item.favorite)
+      : results;
+    return filteredItems.filter(item =>
+      item.name.toLowerCase().includes(search.value.toLowerCase())
+    )
+  })
+
+  const seeMore = async () => {
+    if (!pokemonStore.showFavorites) {
+      let url = null;
+      if (pokemonStore.pokemons && pokemonStore.pokemons.next) {
+        url = pokemonStore.pokemons.next;
       }
+      await commonStore.setLoader(true);
+      await pokemonStore.findAll(url);
+      await commonStore.setLoader(false);
     }
-  },
-  computed: {
-    ...mapState('pokemon', [
-      'search',
-      'pokemons',
-      'showFavorites'
-    ]),
-    items: {
-      get () {
-        let array = [];
-        if (this.pokemons && this.pokemons.results) {
-          if (this.showFavorites) {
-            array = this.pokemons.results.filter((item) => {
-              return item.favorite === true;
-            });
-          } else {
-            array = this.pokemons.results;
-          }
-        }
-        return array.filter((item) => {
-          return item.name.toLowerCase().includes(this.search.toLowerCase());
-        });
-      },
-      set (newValue) {
-        return newValue;
-      }
-    },
-    disabledFavorites () {
-      let array = [];
-      if (this.pokemons && this.pokemons.results) {
-        array = this.pokemons.results.filter((item) => {
-          return item.favorite === true;
-        });
-      }
-      return array.length <= 0;
+  };
+
+  const handleScroll = () => {
+    const documentHeight = document.documentElement.scrollHeight;
+    const viewportHeight = window.innerHeight;
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition + viewportHeight >= documentHeight) {
+      seeMore();
     }
-  },
-  async mounted () {
-    await this.setLoader(true);
-    await this.findAll();
-    await this.setLoader(false);
-  },
-  methods: {
-    ...mapActions('pokemon', [
-      'findAll',
-      'setShowFavorites'
-    ]),
-    ...mapActions('common', [
-      'setLoader'
-    ])
-  }
-};
+  };
+
+  watch(disabledFavorites, (newValue) => {
+    if (newValue) {
+      pokemonStore.setShowFavorites(false);
+    }
+  })
+
+  onMounted(async () => {
+    window.addEventListener('scroll', handleScroll);
+    commonStore.setLoader(true);
+    await pokemonStore.findAll();
+    commonStore.setLoader(false);
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+  });
 </script>
