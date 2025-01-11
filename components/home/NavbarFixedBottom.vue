@@ -1,17 +1,17 @@
 <template>
   <b-navbar-nav class="navbar-fixed">
     <b-nav-form class="navbar-form container">
-      <b-button
+      <button
         :class="`button ${!pokemonStore.showFavorites ? 'button-primary' : 'button-secondary'}`"
         @click="setFavorites(false)">
         <i class="bi bi-list-ul"></i> All
-      </b-button>
-      <b-button
+      </button>
+      <button
         :class="`button ${pokemonStore.showFavorites ? 'button-primary' : 'button-secondary'}`"
         @click="setFavorites(true)"
         :disabled="props.disabledFavorites">
         <i class="bi bi-star-fill"></i> Favorites
-      </b-button>
+      </button>
     </b-nav-form>
   </b-navbar-nav>
 </template>
@@ -20,7 +20,6 @@
 import { usePokemonStore } from '~/stores/pokemon';
 import { defineProps } from 'vue';
 
-// Definir las props
 const props = defineProps({
   disabledFavorites: {
     type: Boolean,

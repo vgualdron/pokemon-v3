@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { usePokemonStore } from '~/stores/pokemon';
 
 const pokemonStore = usePokemonStore();

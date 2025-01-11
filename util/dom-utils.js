@@ -11,12 +11,12 @@ export function isMobile() {
         a.substr(0, 4)
       )
     ) {
-      check = true
+      check = true;
     }
-  })(navigator.userAgent || navigator.vendor || window.opera)
-  return check
+  })(navigator.userAgent || navigator.vendor || window.opera);
+  return check;
 }
 
 export default {
   isMobile
-}
+};

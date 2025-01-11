@@ -22,9 +22,9 @@
         <p>{{ getTypes(pokemon.types) }}</p>
       </div>
       <div class="data btn-share">
-        <b-button pill variant="danger" class="my-sm-0" @click="copy(pokemon)">
+        <button pill variant="danger" class="my-sm-0" @click="copy(pokemon)">
           Share to my friends
-        </b-button>
+        </button>
         <p @click="check(pokemon)">
           <i :class="pokemon.favorite ? 'bi bi-star-fill icon-star-list check' : 'bi bi-star icon-star-list'"></i>
         </p>
@@ -34,6 +34,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { usePokemonStore } from '~/stores/pokemon';
 
 const pokemonStore = usePokemonStore();

@@ -1,0 +1,7 @@
+# Ignorar la carpeta de salida generada por Nuxt
+.output/
+
+# Ignorar la carpeta de dependencias
+node_modules/
+docs
+dist

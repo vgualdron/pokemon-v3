@@ -509,11 +509,4 @@ header.modal-header > button.close {
   width: 50%; /* Ajusta el ancho del contenedor para que los botones no ocupen toda la barra */
 }
 
-.b-button {
-  display: flex;
-  align-items: center; /* Centra el ícono dentro del botón */
-  justify-content: center; /* Centra el texto dentro del botón */
-  margin: 0 10px; /* Espacio entre los botones */
-  padding: 10px 20px; /* Ajusta el tamaño del botón */
-}
 

@@ -9,6 +9,7 @@
 </template>
 
 <script setup>
+  import { computed } from 'vue';
   import { useCommonStore } from '~/stores/common';
 
   // Usar el store de Pinia
@@ -17,5 +18,5 @@
   // Acceder al estado del loader desde Pinia
   const loader = computed(() => {
     return commonStore.loader;
-  })
+  });
 </script>

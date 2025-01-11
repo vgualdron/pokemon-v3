@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted, watch } from 'vue';
+  import { computed, onMounted, onUnmounted, watch } from 'vue';
   import { usePokemonStore } from '../stores/pokemon';
   import { useCommonStore } from '../stores/common';
   import InputSearch from '../components/home/InputSearch';
@@ -34,7 +34,7 @@
   const disabledFavorites = computed(() => {
     const favoritePokemons = pokemons.value?.results?.filter(item => item.favorite);
     return favoritePokemons?.length <= 0;
-  })
+  });
 
   const items = computed(() => {
     const results = pokemons.value?.results || [];
@@ -43,8 +43,8 @@
       : results;
     return filteredItems.filter(item =>
       item.name.toLowerCase().includes(search.value.toLowerCase())
-    )
-  })
+    );
+  });
 
   const seeMore = async () => {
     if (!pokemonStore.showFavorites) {
@@ -72,14 +72,14 @@
     if (newValue) {
       pokemonStore.setShowFavorites(false);
     }
-  })
+  });
 
   onMounted(async () => {
     window.addEventListener('scroll', handleScroll);
     commonStore.setLoader(true);
     await pokemonStore.findAll();
     commonStore.setLoader(false);
-  })
+  });
 
   onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll);

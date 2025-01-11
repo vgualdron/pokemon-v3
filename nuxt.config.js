@@ -2,16 +2,18 @@ import environmentConfig from './config/env.config.js';
 
 const env = process.env.NODE_ENV;
 const isDev = env !== 'production';
+console.log(isDev);
 const envConfig = environmentConfig[env];
 
 export default defineNuxtConfig({
+  assetPrefix: './', // Aplica la base para todos los recursos estáticos generados
   runtimeConfig: {
     public: envConfig, // Configuración accesible desde el cliente
   },
   // Directorio de generación estática
   generate: {
-    dir: 'docs', // Exportar a /docs
-    fallback: '404.html', // Archivo fallback para SPA
+    dir: 'dist', // Exportar a /docs
+    exclude: ['/404', '/500'], // Evita la generación de las páginas de error
   },
   // Desactivar el renderizado del lado del servidor
   ssr: false, // PWA típicamente es SPA
@@ -46,11 +48,24 @@ export default defineNuxtConfig({
   components: true,
   modules: [
     '@pinia/nuxt',
-    '@vite-pwa/nuxt', // Módulo PWA
+    '@vite-pwa/nuxt',
+    '@nuxtjs/eslint-module',
   ],
+  eslint: {
+    fix: true,
+    emitWarning: true,
+  },
   plugins: ['~/plugins/bootstrap-vue.js'],
+  extends: [],
   build: {
+    publicPath: './_nuxt/', // Cambiar a ruta relativa para archivos generados
     transpile: ['bootstrap-vue-next'],
+    postcss: {
+      plugins: {
+        // Desactiva el procesamiento de CSS en archivos específicos
+        'postcss-preset-env': false,
+      },
+    },
   },
   axios: {},
   pwa: {
@@ -86,6 +101,7 @@ export default defineNuxtConfig({
   },
   vite: {
     build: {
+      assetsDir: './_nuxt',
       rollupOptions: {
         output: {
           assetFileNames: 'assets/[name].[hash].[ext]', // Controlar los nombres de los archivos
@@ -93,8 +109,20 @@ export default defineNuxtConfig({
       },
     },
     base: './', // Ajustar rutas relativas
+    optimizeDeps: {
+      exclude: ['virtual:public'], // Excluye rutas virtuales
+    },
+    css: {
+      postcss: {
+        options: {
+          // Excluir archivos virtuales generados dinámicamente por Nuxt
+          exclude: [/virtual:/],
+        },
+      },
+    },
   },
   router: {
+    base: './',  // Cambia la base a una ruta relativa
     options: {
       base: envConfig.appBaseDir || '/', // Base del router
     },

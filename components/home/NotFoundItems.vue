@@ -7,7 +7,7 @@
       You look lost on your journey!
     </h6>
     <div class="btn-go-back">
-      <b-button class="button button-primary" @click="clearSearch">Go back home</b-button>
+      <button class="button button-primary" @click="clearSearch">Go back home</button>
     </div>
   </div>
 </template>

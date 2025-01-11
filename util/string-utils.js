@@ -34,7 +34,7 @@ export function isEmptyString (element) {
     element === null ||
     (typeof element === 'string' && element.trim() === '')
   );
-};
+}
 
 export function urlify (text) {
   // crea elemento html temporal
@@ -58,7 +58,7 @@ export function urlify (text) {
     });
   });
   return text;
-};
+}
 
 export function isEmptyHtml (value) {
   // crea elemento html temporal
@@ -74,7 +74,7 @@ export function isEmptyHtml (value) {
   // elimina el elemento temporal
   tmp.parentNode.removeChild(tmp);
   return false;
-};
+}
 
 export function set24to12hours (time) {
   if (time.split(':').length !== 2) {
@@ -88,11 +88,11 @@ export function set24to12hours (time) {
   const format = parseInt(parts[0]) >= 12 ? 'PM' : 'AM';
 
   return hours + ':' + minutes + ' ' + format;
-};
+}
 
 export function addDots (text, limiter) {
   return (text.length > limiter ? text.substring(0, limiter) + '...' : text);
-};
+}
 
 export function validateEmail (valor) {
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3,4})+$/;
@@ -101,7 +101,7 @@ export function validateEmail (valor) {
   } else {
     return false;
   }
-};
+}
 
 export default {
   validarCantidadCaracteres,

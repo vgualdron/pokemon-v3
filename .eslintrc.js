@@ -1,10 +1,12 @@
 module.exports = {
   "root": true,
   "env": {
-    browser: true,
-    node: true
+    "browser": true,
+    "node": true,
+    "es2021": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:vue/vue3-essential",
     "eslint:recommended"
   ],
@@ -15,8 +17,13 @@ module.exports = {
   "plugins": [
     "vue"
   ],
-  // add your custom rules here
+  "globals": {
+    "defineNuxtConfig": "readonly",
+    "defineNuxtPlugin": "readonly",
+    "useState": "readonly"
+  },
   "rules": {
-    'semi': [2, "always"]
+    'semi': ["error", "always"],
+    'vue/multi-word-component-names': 'off',
   }
-}
+};

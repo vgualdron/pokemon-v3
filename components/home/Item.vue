@@ -16,7 +16,7 @@ import { defineProps } from 'vue';
 import { usePokemonStore } from '~/stores/pokemon';
 import { useCommonStore } from '~/stores/common';
 
-const props = defineProps({
+defineProps({
   item: {
     type: Object,
     required: true

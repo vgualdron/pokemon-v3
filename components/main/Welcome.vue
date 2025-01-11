@@ -13,6 +13,7 @@
   </div>
 </template>
 <script setup>
+  import { onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import { useCommonStore } from '../stores/common';
   import CommonHelper from '~/helpers/CommonHelper';
@@ -30,6 +31,6 @@
     commonStore.setLoader(true);
     await commonHelper.delay(1000);
     commonStore.setLoader(false);
-  })
+  });
 
 </script>

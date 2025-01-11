@@ -13,4 +13,4 @@ export const useCommonStore = defineStore('common', {
       this.loader = value;
     },
   }
-})
+});
