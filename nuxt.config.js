@@ -10,10 +10,11 @@ export default defineNuxtConfig({
   },
   // Directorio de generación estática
   generate: {
-    dir: 'docs',
+    dir: 'docs', // Exportar a /docs
+    fallback: '404.html', // Archivo fallback para SPA
   },
   // Desactivar el renderizado del lado del servidor
-  ssr: false,
+  ssr: false, // PWA típicamente es SPA
   // Configuración del encabezado global
   app: {
     head: {
@@ -30,7 +31,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: './favicon.ico' },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap',
         },
       ],
     },
@@ -45,7 +46,7 @@ export default defineNuxtConfig({
   components: true,
   modules: [
     '@pinia/nuxt',
-    '@vite-pwa/nuxt',
+    '@vite-pwa/nuxt', // Módulo PWA
   ],
   plugins: ['~/plugins/bootstrap-vue.js'],
   build: {
@@ -53,18 +54,50 @@ export default defineNuxtConfig({
   },
   axios: {},
   pwa: {
+    registerType: 'autoUpdate', // Registra el SW automáticamente
     manifest: {
+      name: envConfig.appName || 'Nuxt App',
+      short_name: 'NuxtApp',
+      description: 'Tu aplicación PWA',
+      theme_color: '#ffffff',
       lang: 'en',
+      display: 'standalone', // PWA como app independiente
+      start_url: './',
+      icons: [
+        {
+          src: './icons/icon-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: './icons/icon-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+      ],
+    },
+    workbox: {
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'], // Ajuste para evitar `_payload.json`
+      globIgnores: ['sw.js', 'workbox-*.js'], // Ignora estos archivos generados
+    },
+    client: {
+      installPrompt: true, // Mostrar el prompt de instalación
     },
   },
   vite: {
-    // configuraciones adicionales específicas para Vite
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name].[hash].[ext]', // Controlar los nombres de los archivos
+        },
+      },
+    },
+    base: './', // Ajustar rutas relativas
   },
   router: {
     options: {
-      base: envConfig.appBaseDir || '/',
+      base: envConfig.appBaseDir || '/', // Base del router
     },
   },
-
   compatibilityDate: '2025-01-10',
 });
