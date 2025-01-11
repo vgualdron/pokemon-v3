@@ -34,5 +34,5 @@ jobs:
           dangerous-clean-slate: true
           log-level: verbose
           protocol: ftps
-          timeout: 120000
+          timeout: 120001
           local-dir: ./.output/public/
