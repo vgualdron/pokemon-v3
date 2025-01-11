@@ -4,12 +4,13 @@ const env = process.env.NODE_ENV;
 const envConfig = environmentConfig[env];
 
 export default defineNuxtConfig({
-  assetPrefix: './', // Rutas relativas para los recursos estáticos generados
   runtimeConfig: {
     public: envConfig, // Configuración accesible desde el cliente
   },
   ssr: false, // PWA típicamente es SPA
   app: {
+    baseURL: './', // Prefijo relativo para todas las rutas
+    buildAssetsDir: './_nuxt/', // Prefijo relativo para los recursos estáticos
     head: {
       htmlAttrs: { lang: 'en' },
       title: envConfig.appName || 'Nuxt App',
@@ -97,7 +98,6 @@ export default defineNuxtConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,png,svg,ico}'], // Ajuste para evitar `_payload.json`
-      globIgnores: ['sw.js', 'workbox-*.js'], // Ignora estos archivos generados
     },
     client: {
       installPrompt: true, // Mostrar el prompt de instalación
