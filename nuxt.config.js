@@ -58,6 +58,7 @@ export default defineNuxtConfig({
   plugins: ['~/plugins/bootstrap-vue.js'],
   extends: [],
   build: {
+    assetsDir: './_nuxt',
     publicPath: './_nuxt/', // Cambiar a ruta relativa para archivos generados
     transpile: ['bootstrap-vue-next'],
     postcss: {
