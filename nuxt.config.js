@@ -6,18 +6,14 @@ console.log(isDev);
 const envConfig = environmentConfig[env];
 
 export default defineNuxtConfig({
-  assetPrefix: './', // Aplica la base para todos los recursos estáticos generados
+  assetPrefix: './', // Rutas relativas para los recursos estáticos generados
   runtimeConfig: {
     public: envConfig, // Configuración accesible desde el cliente
   },
-  // Directorio de generación estática
   generate: {
-    dir: 'dist', // Exportar a /docs
-    exclude: ['/404', '/500'], // Evita la generación de las páginas de error
+    dir: 'dist', // Exportar a /dist
   },
-  // Desactivar el renderizado del lado del servidor
   ssr: false, // PWA típicamente es SPA
-  // Configuración del encabezado global
   app: {
     head: {
       htmlAttrs: {
@@ -38,7 +34,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // Archivos CSS globales
   css: [
     'bootstrap/dist/css/bootstrap.css', // Estilos de Bootstrap
     'bootstrap-vue-next/dist/bootstrap-vue-next.css',
@@ -58,15 +53,9 @@ export default defineNuxtConfig({
   plugins: ['~/plugins/bootstrap-vue.js'],
   extends: [],
   build: {
-    assetsDir: './_nuxt',
-    publicPath: './_nuxt/', // Cambiar a ruta relativa para archivos generados
+    assetsDir: './_nuxt', // Carpeta para los recursos estáticos generados
+    publicPath: './_nuxt', // Ruta relativa para los archivos generados
     transpile: ['bootstrap-vue-next'],
-    postcss: {
-      plugins: {
-        // Desactiva el procesamiento de CSS en archivos específicos
-        'postcss-preset-env': false,
-      },
-    },
   },
   axios: {},
   pwa: {
@@ -78,7 +67,7 @@ export default defineNuxtConfig({
       theme_color: '#ffffff',
       lang: 'en',
       display: 'standalone', // PWA como app independiente
-      start_url: './',
+      start_url: './', // Ruta relativa al inicio
       icons: [
         {
           src: './icons/icon-192x192.png',
@@ -102,31 +91,28 @@ export default defineNuxtConfig({
   },
   vite: {
     build: {
-      assetsDir: './_nuxt',
+      assetsDir: './_nuxt', // Genera los archivos en una ruta relativa
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/[name].[hash].[ext]', // Controlar los nombres de los archivos
+          assetFileNames: 'assets/[name].[hash].[ext]', // Controla los nombres de los archivos
         },
       },
     },
-    base: './', // Ajustar rutas relativas
+    base: './', // Rutas relativas para los archivos generados
     optimizeDeps: {
-      exclude: ['virtual:public'], // Excluye rutas virtuales
+      exclude: ['virtual:public'], // Excluye rutas virtuales (si no es necesario)
     },
     css: {
       postcss: {
         options: {
           // Excluir archivos virtuales generados dinámicamente por Nuxt
-          exclude: [/virtual:/],
+          // No uses `exclude` aquí para evitar conflictos
         },
       },
     },
   },
   router: {
     base: './',  // Cambia la base a una ruta relativa
-    options: {
-      base: envConfig.appBaseDir || '/', // Base del router
-    },
   },
   compatibilityDate: '2025-01-10',
 });
