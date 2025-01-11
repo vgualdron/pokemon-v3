@@ -1,8 +1,6 @@
 import environmentConfig from './config/env.config.js';
 
 const env = process.env.NODE_ENV;
-const isDev = env !== 'production';
-console.log(isDev);
 const envConfig = environmentConfig[env];
 
 export default defineNuxtConfig({
@@ -10,20 +8,15 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: envConfig, // Configuración accesible desde el cliente
   },
-  generate: {
-    dir: 'dist', // Exportar a /dist
-  },
   ssr: false, // PWA típicamente es SPA
   app: {
     head: {
-      htmlAttrs: {
-        lang: 'es',
-      },
+      htmlAttrs: { lang: 'en' },
       title: envConfig.appName || 'Nuxt App',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: 'fsdfds' },
+        { hid: 'description', name: 'description', content: 'Descripción' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: './favicon.ico' },
@@ -33,6 +26,32 @@ export default defineNuxtConfig({
         },
       ],
     },
+  },
+  generate: {
+    dir: 'dist', // Exportar a /dist
+  },
+  build: {
+    assetsDir: './_nuxt', // Carpeta para los recursos estáticos generados
+    publicPath: './_nuxt', // Ruta relativa para los archivos generados
+    transpile: ['bootstrap-vue-next'],
+  },
+  vite: {
+    base: './', // Rutas relativas para los archivos generados
+    build: {
+      assetsDir: './_nuxt', // Genera los archivos en una ruta relativa
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name].[hash].[ext]', // Controla los nombres de los archivos
+        },
+      },
+    },
+    css: false,
+    optimizeDeps: {
+      exclude: ['virtual:public'], // Ignora rutas virtuales generadas
+    },
+  },
+  router: {
+    base: './',  // Cambia la base a una ruta relativa
   },
   css: [
     'bootstrap/dist/css/bootstrap.css', // Estilos de Bootstrap
@@ -52,11 +71,6 @@ export default defineNuxtConfig({
   },
   plugins: ['~/plugins/bootstrap-vue.js'],
   extends: [],
-  build: {
-    assetsDir: './_nuxt', // Carpeta para los recursos estáticos generados
-    publicPath: './_nuxt', // Ruta relativa para los archivos generados
-    transpile: ['bootstrap-vue-next'],
-  },
   axios: {},
   pwa: {
     registerType: 'autoUpdate', // Registra el SW automáticamente
@@ -89,30 +103,5 @@ export default defineNuxtConfig({
       installPrompt: true, // Mostrar el prompt de instalación
     },
   },
-  vite: {
-    build: {
-      assetsDir: './_nuxt', // Genera los archivos en una ruta relativa
-      rollupOptions: {
-        output: {
-          assetFileNames: 'assets/[name].[hash].[ext]', // Controla los nombres de los archivos
-        },
-      },
-    },
-    base: './', // Rutas relativas para los archivos generados
-    optimizeDeps: {
-      exclude: ['virtual:public'], // Excluye rutas virtuales (si no es necesario)
-    },
-    css: {
-      postcss: {
-        options: {
-          // Excluir archivos virtuales generados dinámicamente por Nuxt
-          // No uses `exclude` aquí para evitar conflictos
-        },
-      },
-    },
-  },
-  router: {
-    base: './',  // Cambia la base a una ruta relativa
-  },
-  compatibilityDate: '2025-01-10',
+  compatibilityDate: '2025-01-11',
 });
