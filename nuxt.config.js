@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   ssr: false, // PWA típicamente es SPA
   app: {
     baseURL: './', // Prefijo relativo para todas las rutas
-    buildAssetsDir: './_nuxt/', // Prefijo relativo para los recursos estáticos
+    buildAssetsDir: '_nuxt/', // Prefijo relativo para los recursos estáticos
     head: {
       htmlAttrs: { lang: 'en' },
       title: envConfig.appName || 'Nuxt App',
@@ -39,7 +39,6 @@ export default defineNuxtConfig({
   vite: {
     base: './', // Rutas relativas para los archivos generados
     build: {
-      assetsDir: './_nuxt', // Genera los archivos en una ruta relativa
       rollupOptions: {
         output: {
           assetFileNames: 'assets/[name].[hash].[ext]', // Controla los nombres de los archivos
