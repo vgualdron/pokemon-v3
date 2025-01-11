@@ -32,8 +32,8 @@ export default defineNuxtConfig({
     dir: 'dist', // Exportar a /dist
   },
   build: {
-    assetsDir: './_nuxt', // Carpeta para los recursos estáticos generados
-    publicPath: './_nuxt', // Ruta relativa para los archivos generados
+    assetsDir: '_nuxt', // Carpeta para los recursos estáticos generados
+    publicPath: '_nuxt', // Ruta relativa para los archivos generados
     transpile: ['bootstrap-vue-next'],
   },
   vite: {
