@@ -35,4 +35,4 @@ jobs:
           log-level: verbose
           protocol: ftps
           timeout: 120000
-          local-dir: ./dist/pwa/
+          local-dir: ./.output/public/
