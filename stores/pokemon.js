@@ -14,7 +14,6 @@ export const usePokemonStore = defineStore('pokemon', {
     showModalPokemon: false
   }),
   actions: {
-    // Métodos para manejar las acciones
     async findByName() {
       const res = await pokemonApi.findByName();
       this.pokemons = res.data;
