@@ -90,6 +90,7 @@ export default defineNuxtConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      globIgnores: ['400.html', '200.html'],
     },
     client: {
       installPrompt: true,
