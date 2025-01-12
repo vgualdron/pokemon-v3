@@ -33,7 +33,7 @@ export default defineNuxtConfig({
   },
   build: {
     assetsDir: 'assets',
-    publicPath: './_nuxt', // Está bien, ya que se refiere a recursos dentro de _nuxt/
+    publicPath: './', // Está bien, ya que se refiere a recursos dentro de _nuxt/
     transpile: ['bootstrap-vue-next'],
   },
   vite: {
