@@ -22,7 +22,7 @@
         <p>{{ getTypes(pokemon.types) }}</p>
       </div>
       <div class="data btn-share">
-        <button pill variant="danger" class="my-sm-0" @click="copy(pokemon)">
+        <button class="button button-primary" @click="copy(pokemon)">
           Share to my friends
         </button>
         <p @click="check(pokemon)">
