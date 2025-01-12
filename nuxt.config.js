@@ -57,7 +57,7 @@ export default defineNuxtConfig({
     'bootstrap/dist/css/bootstrap.css',
     'bootstrap-vue-next/dist/bootstrap-vue-next.css',
     'bootstrap-icons/font/bootstrap-icons.css',
-    '~/public/css/styles.css',
+    '~/assets/css/styles.css',
   ],
   components: true,
   modules: [
