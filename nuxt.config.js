@@ -1,9 +1,22 @@
+import { resolve } from 'path';
+import { copy } from 'fs-extra';
 import environmentConfig from './config/env.config.js';
 
 const env = process.env.NODE_ENV;
 const envConfig = environmentConfig[env];
 
 export default defineNuxtConfig({
+  hooks: {
+    'generate:done': async () => {
+      const source = resolve('.nuxt/dist/client/assets');
+      const destination = resolve('.output/public/_nuxt/assets');
+      await copy(source, destination);
+      console.log('Activos copiados a .output/public/_nuxt/assets');
+    },
+  },
+  alias: {
+    assets: resolve(__dirname, './assets'),
+  },
   runtimeConfig: {
     public: envConfig, // Configuración accesible desde el cliente
   },
@@ -29,11 +42,11 @@ export default defineNuxtConfig({
     },
   },
   generate: {
-    dir: 'dist', // Exportar a /dist
+    dir: '.output/public', // Carpeta de salida para generación estática
   },
   build: {
-    assetsDir: '_nuxt', // Carpeta para los recursos estáticos generados
-    publicPath: '_nuxt', // Ruta relativa para los archivos generados
+    assetsDir: 'assets', // Carpeta para los recursos estáticos generados
+    publicPath: './_nuxt', // Ruta relativa para los archivos generados
     transpile: ['bootstrap-vue-next'],
   },
   vite: {
