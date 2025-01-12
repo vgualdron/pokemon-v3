@@ -42,7 +42,7 @@ export default defineNuxtConfig({
     },
   },
   generate: {
-    dir: '.output/public', // Carpeta de salida para generación estática
+    dir: 'dist', // Carpeta de salida para generación estática
   },
   build: {
     assetsDir: 'assets', // Carpeta para los recursos estáticos generados
