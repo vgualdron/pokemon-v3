@@ -38,13 +38,7 @@ export default defineNuxtConfig({
   },
   vite: {
     base: '/', // Mantén la base relativa si realmente es necesario
-    build: {
-      rollupOptions: {
-        output: {
-          assetFileNames: 'assets/[name].[hash].[ext]',
-        },
-      },
-    },
+    build: {},
     css: false,
     optimizeDeps: {
       exclude: ['virtual:public'],
@@ -57,7 +51,7 @@ export default defineNuxtConfig({
     'bootstrap/dist/css/bootstrap.css',
     'bootstrap-vue-next/dist/bootstrap-vue-next.css',
     'bootstrap-icons/font/bootstrap-icons.css',
-    '/css/styles.css',
+    '~/public/css/styles.css',
   ],
   components: true,
   modules: [
