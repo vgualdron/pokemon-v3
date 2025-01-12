@@ -1,12 +1,17 @@
 <template>
-   <b-modal @hidden="resetModal" v-model="showModal" scrollable centered>
+   <b-modal
+    @show="disableBodyScroll"
+    @hidden="enableBodyScroll"
+    v-model="showModal"
+    scrollable
+    centered>
     <div class="container-image">
-      <img class="btn-close-icon" src="~/public/images/close.png" />
+      <img class="btn-close-icon" src="~/public/images/close.png" @click="resetModal"/>
       <img class="image-background-modal" src="~/public/images/background-modal.png" />
       <img class="image-pokemon-modal" :src="urlImageItem" />
     </div>
     <div v-if="pokemon" class="ability-list">
-      <Ability v-for="data in pokemonData" :data="data" :key="`ability-${data.name}`"></Ability>
+      <Ability v-for="data in pokemonData" :data="data" :key="`ability-${data.name}`" />
     </div>
     <div class="block-bottom">
       <button class="button button-primary" @click="copy(pokemon)">
@@ -19,7 +24,7 @@
   </b-modal>
 </template>
 <script setup>
-  import { computed } from 'vue';
+  import { computed, watch } from 'vue';
   import { usePokemonStore } from '~/stores/pokemon';
   import Ability from './DetailPokemon/Ability';
 
@@ -103,6 +108,15 @@
       .join(' ');
   };
 
+  const disableBodyScroll = () => {
+    document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+  };
+
+  const enableBodyScroll = () => {
+    resetModal();
+    document.body.classList.remove('no-scroll'); // Elimina la clase para restaurar el scroll
+  };
+
   const copy = (pokemon) => {
     const text = `Name: ${pokemon.name}, Weight: ${pokemon.weight}, Height: ${pokemon.height}, Types: ${getTypes(pokemon.types)}.`;
 
@@ -114,5 +128,13 @@
         console.error('Failed to copy text: ', err);
       });
   };
+
+  watch(showModal, (newValue) => {
+    if (newValue) {
+      disableBodyScroll();
+    } else {
+      enableBodyScroll();
+    }
+  });
 
 </script>

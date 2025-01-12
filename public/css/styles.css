@@ -7,6 +7,10 @@ body {
   font-family: "Lato", sans-serif !important;
   background: #f9f9f9;
 }
+.no-scroll {
+  overflow: hidden; /* Oculta el scroll */
+  height: 100%; /* Previene que el contenido se desborde */
+}
 
 .container {
   background: #f9f9f9;
@@ -314,13 +318,13 @@ body {
     }
   }
   .modal-content {
-    /* max-width: 570px; */
-    /* margin: auto; */
+    border: none;
   }
   .image-background-modal {
-    max-width: 570px;
-    height: 220px;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   .image-pokemon-modal {
     margin-top: -246px;
