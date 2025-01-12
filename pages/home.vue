@@ -11,7 +11,7 @@
       <NotFoundItems v-else />
     </div>
     <NavbarFixedBottom :disabledFavorites="disabledFavorites"/>
-    <ModalDetailPokemon />
+    <DetailPokemon class="modal-detail"/>
   </div>
 </template>
 
@@ -23,7 +23,7 @@
   import Item from '../components/home/Item';
   import NotFoundItems from '../components/home/NotFoundItems';
   import NavbarFixedBottom from '../components/home/NavbarFixedBottom';
-  import ModalDetailPokemon from '../components/home/ModalDetailPokemon';
+  import DetailPokemon from '../components/home/DetailPokemon';
 
   const pokemonStore = usePokemonStore();
   const commonStore = useCommonStore();
