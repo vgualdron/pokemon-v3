@@ -1,6 +1,6 @@
 <template>
   <div class="welcome text-center">
-    <img class="image" src="~/static/images/pikachu-welcome.png" />
+    <img class="image" :src="'/images/pikachu-welcome.png'" />
     <h6 class="title">
       Welcome to Pokédex
     </h6>

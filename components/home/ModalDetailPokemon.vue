@@ -2,7 +2,7 @@
   <div class="modal-pokemon">
     <b-modal @hidden="resetModal" v-model="showModal" scrollable centered>
       <div class="text-center">
-        <img class="image-background-modal" src="~/static/images/background-modal.png" />
+        <img class="image-background-modal" :src="'/images/background-modal.png'" />
         <img class="image-pokemon-modal" :src="urlImageItem" />
       </div>
       <div class="data content-name">
