@@ -11,7 +11,7 @@
       <img class="image-pokemon-modal" :src="urlImageItem" />
     </div>
     <div v-if="pokemon" class="ability-list">
-      <Ability v-for="data in pokemonData" :data="data" :key="`ability-${data.name}`" />
+      <Ability v-for="data in pokemonData" :data="data" :key="`ability-${data.name}`"/>
     </div>
     <div class="block-bottom">
       <button class="button button-primary" @click="copy(pokemon)">

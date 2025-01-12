@@ -8,8 +8,8 @@ body {
   background: #f9f9f9;
 }
 .no-scroll {
-  overflow: hidden; /* Oculta el scroll */
-  height: 100%; /* Previene que el contenido se desborde */
+  overflow: hidden;
+  height: 100%;
 }
 
 .container {
@@ -34,18 +34,15 @@ body {
 .button-primary {
   background-color: #F22539 !important;
   border-color: #F22539 !important;
-  &:hover {
-    background-color: #C00E20;
-    border-color: #C00E20;
+  &:active {
+    background-color: #C00E20 !important;
+    border-color: #C00E20 !important;
   }
 }
 
 .button-secondary {
   background: #bfbfbf !important;
   border-color: #bfbfbf !important;
-  &:hover {
-    background-color: #000;
-  }
 }
 
 .loader {
@@ -76,7 +73,7 @@ body {
 }
 
 .image-loader {
-  width: 106px; /* Ajusta el tamaño según lo que necesites */
+  width: 106px;
   height: 106px;
 }
 
