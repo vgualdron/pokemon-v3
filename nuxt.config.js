@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     },
   },
   generate: {
-    dir: 'dist',
+    dir: '.output/public',
   },
   build: {
     assetsDir: 'assets',
