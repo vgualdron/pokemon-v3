@@ -7,6 +7,9 @@ on:
 jobs:
   checkout:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.20.5]
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
@@ -15,6 +18,9 @@ jobs:
 
   install-dependencies:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.20.5]
     needs: checkout
     steps:
       - name: Create NPMRC 🔧
