@@ -15,6 +15,10 @@ Usé estas tecnologías para realizar una entrega muy ligera, ya que estas tecno
 * Axios: Cliente HTTP basado en promesas para hacer solicitudes API desde el navegador o Node.js, simplificando la gestión de datos remotos.
 * Vite: Herramienta de construcción ultrarrápida que optimiza el desarrollo con recarga instantánea, transpilación eficiente y construcción de producción con esbuild.
 * Vitest (Unit test): Framework de pruebas para Vue.js y aplicaciones JavaScript, diseñado para ofrecer una integración rápida y eficiente con características modernas como HMR.
+* Integracion con git y compilado y despliegue con pipeline configurado para que se compile en github y se despligue en un servidor externo.
+* Secrets de variables para darle seguridad al despligue en el servidor externo.
+* Se pasan el resultado del compilado por FTP al servido externo. (Revisar .github/workflows/deployment.yml)
+https://github.com/vgualdron/pokemon-v3/blob/master/.github/workflows/deployment.yml
 
 ## Descripción
 La primera pantalla que se muestra al ingresar a la aplicación es la de Welcome
