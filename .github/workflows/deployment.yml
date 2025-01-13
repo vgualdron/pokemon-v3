@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: Create NPMRC 🔧
         run: |
+          ls
           cat npmrc.txt >> .npmrc
 
       - name: Install Dependences 🔧
