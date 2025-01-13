@@ -13,7 +13,7 @@
 
 <script setup>
   import { computed } from 'vue';
-  import { usePokemonStore } from '~/stores/pokemon';
+  import { usePokemonStore } from '../../stores/pokemon';
 
   const pokemonStore = usePokemonStore();
   const value = computed({

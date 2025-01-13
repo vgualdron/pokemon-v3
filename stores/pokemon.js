@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import PokemonApi from '~/api/pokemon/PokemonApi';
-import CommonHelper from '~/helpers/CommonHelper';
+import PokemonApi from '../api/pokemon/PokemonApi';
+import CommonHelper from '../helpers/CommonHelper';
 
 const pokemonApi = new PokemonApi();
 const commonHelper = new CommonHelper();

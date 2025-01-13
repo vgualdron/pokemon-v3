@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-  import { usePokemonStore } from '~/stores/pokemon';
+  import { usePokemonStore } from '../../stores/pokemon';
   import { defineProps } from 'vue';
 
   const props = defineProps({
@@ -27,10 +27,8 @@
     }
   });
 
-  // Usar el store de Pinia
   const pokemonStore = usePokemonStore();
 
-  // Función para manejar los favoritos
   const setFavorites = (value) => {
     pokemonStore.setShowFavorites(value);
   };

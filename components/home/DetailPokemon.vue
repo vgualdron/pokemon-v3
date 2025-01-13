@@ -6,8 +6,8 @@
     scrollable
     centered>
     <div class="container-image">
-      <img class="btn-close-icon" src="~/public/images/close.png" @click="resetModal"/>
-      <img class="image-background-modal" src="~/public/images/background-modal.png" />
+      <img class="btn-close-icon" src="../../public/images/close.png" @click="resetModal"/>
+      <img class="image-background-modal" src="../../public/images/background-modal.png" />
       <img class="image-pokemon-modal" :src="urlImageItem" />
     </div>
     <div v-if="pokemon" class="ability-list">
@@ -18,15 +18,15 @@
         Share to my friends
       </button>
       <p @click="check(pokemon)" class="start">
-        <i :class="`bi bi-star-fill icon-star-list ${!pokemon.favorite || 'check'}`"></i>
+        <i :class="`bi bi-star-fill icon-star-list ${!pokemon.favorite || 'check'}`" aria-label="star icon"></i>
       </p>
     </div>
   </b-modal>
 </template>
 <script setup>
   import { computed, watch } from 'vue';
-  import { usePokemonStore } from '~/stores/pokemon';
-  import Ability from './DetailPokemon/Ability';
+  import { usePokemonStore } from '../../stores/pokemon';
+  import Ability from './DetailPokemon/Ability.vue';
 
   const pokemonStore = usePokemonStore();
 
@@ -109,12 +109,12 @@
   };
 
   const disableBodyScroll = () => {
-    document.body.classList.add('no-scroll'); // Agrega la clase para desactivar el scroll
+    document.body.classList.add('no-scroll');
   };
 
   const enableBodyScroll = () => {
     resetModal();
-    document.body.classList.remove('no-scroll'); // Elimina la clase para restaurar el scroll
+    document.body.classList.remove('no-scroll');
   };
 
   const copy = (pokemon) => {

@@ -13,8 +13,8 @@
 
 <script setup>
   import { defineProps } from 'vue';
-  import { usePokemonStore } from '~/stores/pokemon';
-  import { useCommonStore } from '~/stores/common';
+  import { usePokemonStore } from '../../stores/pokemon';
+  import { useCommonStore } from '../../stores/common';
 
   defineProps({
     item: {
