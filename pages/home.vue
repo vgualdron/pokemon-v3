@@ -6,12 +6,13 @@
         <Item
           v-for="(item, index) in items"
           :key="`${index.toString()}-${item.name}`"
-          :item="item" />
+          :item="item"
+        />
       </div>
       <NotFoundItems v-else />
     </div>
-    <NavbarFixedBottom :disabledFavorites="disabledFavorites"/>
-    <DetailPokemon class="modal-detail"/>
+    <NavbarFixedBottom :disabledFavorites="disabledFavorites" />
+    <DetailPokemon class="modal-detail" />
   </div>
 </template>
 
@@ -19,11 +20,11 @@
   import { computed, onMounted, onUnmounted, watch } from 'vue';
   import { usePokemonStore } from '../stores/pokemon';
   import { useCommonStore } from '../stores/common';
-  import InputSearch from '../components/home/InputSearch';
-  import Item from '../components/home/Item';
-  import NotFoundItems from '../components/home/NotFoundItems';
-  import NavbarFixedBottom from '../components/home/NavbarFixedBottom';
-  import DetailPokemon from '../components/home/DetailPokemon';
+  import InputSearch from '../components/home/InputSearch.vue';
+  import Item from '../components/home/Item.vue';
+  import NotFoundItems from '../components/home/NotFoundItems.vue';
+  import NavbarFixedBottom from '../components/home/NavbarFixedBottom.vue';
+  import DetailPokemon from '../components/home/DetailPokemon.vue';
 
   const pokemonStore = usePokemonStore();
   const commonStore = useCommonStore();
@@ -32,16 +33,16 @@
   const search = computed(() => pokemonStore.search);
   const pokemons = computed(() => pokemonStore.pokemons);
   const disabledFavorites = computed(() => {
-    const favoritePokemons = pokemons.value?.results?.filter(item => item.favorite);
+    const favoritePokemons = pokemons.value?.results?.filter((item) => item.favorite);
     return favoritePokemons?.length <= 0;
   });
 
   const items = computed(() => {
     const results = pokemons.value?.results || [];
     let filteredItems = showFavorites.value
-      ? results.filter(item => item.favorite)
+      ? results.filter((item) => item.favorite)
       : results;
-    return filteredItems.filter(item =>
+    return filteredItems.filter((item) =>
       item.name.toLowerCase().includes(search.value.toLowerCase())
     );
   });

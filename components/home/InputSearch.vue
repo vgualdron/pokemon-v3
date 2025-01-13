@@ -12,12 +12,12 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { usePokemonStore } from '~/stores/pokemon';
+  import { computed } from 'vue';
+  import { usePokemonStore } from '~/stores/pokemon';
 
-const pokemonStore = usePokemonStore();
-const value = computed({
-  get: () => pokemonStore.search,
-  set: (val) => pokemonStore.setSearch(val),
-});
+  const pokemonStore = usePokemonStore();
+  const value = computed({
+    get: () => pokemonStore.search,
+    set: (val) => pokemonStore.setSearch(val),
+  });
 </script>

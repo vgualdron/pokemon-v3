@@ -39,10 +39,13 @@ export default defineNuxtConfig({
   vite: {
     base: '/', // Mantén la base relativa si realmente es necesario
     build: {},
-    css: false,
+    css: true,
     optimizeDeps: {
       exclude: ['virtual:public'],
     },
+    plugins: [
+      require('@vitejs/plugin-vue')
+    ],
   },
   router: {
     base: '/', // Asegúrate de que este sea un valor absoluto

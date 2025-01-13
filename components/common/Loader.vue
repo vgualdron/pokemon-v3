@@ -2,7 +2,7 @@
   <div>
     <div class="loader" v-show="loader">
       <div class="spin reel">
-        <img class="image-loader" src="~/public/images/loader.png" />
+        <img class="image-loader" src="../../public/images/loader.png" alt="Loader" />
       </div>
     </div>
   </div>
@@ -10,7 +10,7 @@
 
 <script setup>
   import { computed } from 'vue';
-  import { useCommonStore } from '~/stores/common';
+  import { useCommonStore } from '../../stores/common';
 
   // Usar el store de Pinia
   const commonStore = useCommonStore();

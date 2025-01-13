@@ -1,6 +1,6 @@
 <template>
   <div class="welcome text-center">
-    <img class="image" src="~/public/images/pikachu-welcome.png" />
+    <img class="image" src="../../public/images/pikachu-welcome.png" />
     <h6 class="title">
       Welcome to Pokédex
     </h6>
@@ -15,8 +15,8 @@
 <script setup>
   import { onMounted } from 'vue';
   import { useRouter } from 'vue-router';
-  import { useCommonStore } from '../stores/common';
-  import CommonHelper from '~/helpers/CommonHelper';
+  import { useCommonStore } from '../../stores/common';
+  import CommonHelper from '../../helpers/CommonHelper';
 
   const commonStore = useCommonStore();
   const commonHelper = new CommonHelper();

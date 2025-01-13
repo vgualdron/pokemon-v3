@@ -17,21 +17,21 @@
 </template>
 
 <script setup>
-import { usePokemonStore } from '~/stores/pokemon';
-import { defineProps } from 'vue';
+  import { usePokemonStore } from '~/stores/pokemon';
+  import { defineProps } from 'vue';
 
-const props = defineProps({
-  disabledFavorites: {
-    type: Boolean,
-    default: true
-  }
-});
+  const props = defineProps({
+    disabledFavorites: {
+      type: Boolean,
+      default: true
+    }
+  });
 
-// Usar el store de Pinia
-const pokemonStore = usePokemonStore();
+  // Usar el store de Pinia
+  const pokemonStore = usePokemonStore();
 
-// Función para manejar los favoritos
-const setFavorites = (value) => {
-  pokemonStore.setShowFavorites(value);
-};
+  // Función para manejar los favoritos
+  const setFavorites = (value) => {
+    pokemonStore.setShowFavorites(value);
+  };
 </script>

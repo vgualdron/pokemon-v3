@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-  import { usePokemonStore } from '~/stores/pokemon';
+  import { usePokemonStore } from '../../stores/pokemon';
   const pokemonStore = usePokemonStore();
   const clearSearch = () => {
     pokemonStore.setSearch('');
