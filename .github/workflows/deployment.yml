@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: checkout
     steps:
+      - name: Create NPMRC 🔧
+        run: |
+          cat npmrc.txt >> .npmrc
+
       - name: Install Dependences 🔧
         run: |
           npm install
