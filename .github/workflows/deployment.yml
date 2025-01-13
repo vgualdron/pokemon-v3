@@ -22,6 +22,10 @@ jobs:
       - name: Install Dependences
         run: |
           npm install
+       - name: Run Unit Tests 🧪
+        run: |
+          npm run test
+        continue-on-error: false
       - name: Build App 🔧
         run: |
           npm run generate
