@@ -1,4 +1,5 @@
-# App web Pokemon con Vue3 con pinia, mas abajo tengo una vesión usando Vue2 con Vuex
+# App web Pokemon con Vue3 con pinia (Entrega principal de la prueba).
+# Mas abajo tengo una vesión usando Vue2 con Vuex
 # Ver y usar aplicación desplegada en la web, tipo producción:
 https://pagoscesar.com/
 
