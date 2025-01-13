@@ -2,7 +2,7 @@
   <div>
     <div class="loader" v-show="loader">
       <div class="spin reel">
-        <img class="image-loader" src="../../public/images/loader.png" alt="Loader" />
+        <img class="image-loader" src="../../public/images/loader.png" alt="Loader"/>
       </div>
     </div>
   </div>
