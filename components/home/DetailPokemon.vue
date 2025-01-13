@@ -54,7 +54,7 @@
       },
       {
         name: 'Types: ',
-        value: getTypes(p?.abilities),
+        value: getTypes(p?.types),
       },
     ];
   });
@@ -70,8 +70,8 @@
     }
 
     return array.reduce((oldValue, newValue, index) => {
-      if (newValue.ability && newValue.ability.name) {
-        return oldValue.concat(toCapitalizedCase(newValue.ability.name), index === array.length - 1 ? '' : ', ');
+      if (newValue.type && newValue.type.name) {
+        return oldValue.concat(toCapitalizedCase(newValue.type.name), index === array.length - 1 ? '' : ', ');
       }
       return oldValue;
     }, '');
@@ -117,7 +117,7 @@
     document.body.classList.remove('no-scroll');
   };
 
-  const copy = (pokemon) => {
+  const copy = async (pokemon) => {
     const text = `Name: ${pokemon.name}, Weight: ${pokemon.weight}, Height: ${pokemon.height}, Types: ${getTypes(pokemon.types)}.`;
 
     navigator.clipboard.writeText(text)
