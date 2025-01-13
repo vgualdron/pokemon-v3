@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint .",
-    "test:unit": "jest"
+    "test": "npx vitest run"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.9.0",

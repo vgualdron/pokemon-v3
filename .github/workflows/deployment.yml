@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependences
         run: |
           npm install
-       - name: Run Unit Tests 🧪
+      - name: Run Unit Tests 🧪
         run: |
           npm run test
         continue-on-error: false
